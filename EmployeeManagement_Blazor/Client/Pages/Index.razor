@@ -1,25 +1,40 @@
 ﻿@page "/"
 @using EmployeeManagement_Blazor.Shared
 @using Syncfusion.Blazor.Grids
+<style>
+.e-spinner-pane .e-spinner-inner .e-spin-bootstrap4 {
+    stroke: red;
+}
+</style>
 
-<SfGrid DataSource="@Employees">
-    <GridColumns>
-        <GridColumn Field=@nameof(Employee.EmployeeId) HeaderText="Employee ID"></GridColumn>
-        <GridColumn Field=@nameof(Employee.FirstName) HeaderText="First Name"></GridColumn>
-        <GridColumn Field=@nameof(Employee.LastName) HeaderText=" Last Name"></GridColumn>
-        <GridColumn Field=@nameof(Employee.Email) HeaderText="Email"></GridColumn>
-    </GridColumns>
-</SfGrid>
+<SfSpinner @bind-Visible="SpinnerVisible" Size="50" Label="Loading Data..." Type="@SpinnerType.Bootstrap4"></SfSpinner>
+@if (Employees!=null)
+{
+    <SfGrid DataSource="@Employees">
+        <GridColumns>
+            <GridColumn Field=@nameof(Employee.EmployeeId) HeaderText="Employee ID"></GridColumn>
+            <GridColumn Field=@nameof(Employee.FirstName) HeaderText="First Name"></GridColumn>
+            <GridColumn Field=@nameof(Employee.LastName) HeaderText=" Last Name"></GridColumn>
+            <GridColumn Field=@nameof(Employee.Email) HeaderText="Email"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
+
 
 @code {
     public List<Employee> Employees { get; set; }
+
+    public bool SpinnerVisible { get; set; }
 
     [Inject]
     public IEmployeeService EmployeeService { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        SpinnerVisible = true;
+       
         Employees = (await EmployeeService.GetEmployees()).ToList();
+        SpinnerVisible = false;
     }
 
 }
