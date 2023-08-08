@@ -32,9 +32,10 @@ namespace EmployeeManagement_Blazor.Client.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Employee>> GetEmployees()
+        public async Task<EmployeeDataResult> GetEmployees(int skip, int take,string orderBy)
         {
-           return await httpClient.GetFromJsonAsync<IEnumerable<Employee>>("/api/employees");
+           return await httpClient
+                .GetFromJsonAsync<EmployeeDataResult>($"/api/employees?skip={skip}&take={take}&orderBy={orderBy}");
         }
 
         public Task<IEnumerable<Employee>> Search(string name, Gender? gender)

@@ -40,11 +40,11 @@ namespace EmployeeManagement_Blazor.Server.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult> GetEmployees()
+        public async Task<ActionResult> GetEmployees(int skip=0,int take=5,string? orderBy=nameof(Employee.EmployeeId))
         {
             try
             {
-                return Ok(await employee.GetEmployees());
+                return Ok(await employee.GetEmployees(skip,take, orderBy));
 
             }
             catch (Exception ex)

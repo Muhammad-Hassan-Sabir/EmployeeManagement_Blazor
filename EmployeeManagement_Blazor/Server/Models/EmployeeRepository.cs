@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq.Dynamic.Core;
 
 namespace EmployeeManagement_Blazor.Server.Models
 {
@@ -60,9 +61,13 @@ namespace EmployeeManagement_Blazor.Server.Models
             return employee;
         }
 
-        public async Task<IEnumerable<Employee>> GetEmployees()
+        public async Task<EmployeeDataResult> GetEmployees(int skip,int take,string orderBy)
         {
-            return await context.Employees.ToListAsync();
+            return new EmployeeDataResult
+            {
+                Employees = context.Employees.OrderBy(orderBy).Skip(skip).Take(take),
+                Count = await context.Employees.CountAsync() 
+            };
         }
 
         public async Task<IEnumerable<Employee>> Search(string name, Gender? gender)
