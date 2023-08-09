@@ -22,6 +22,12 @@ namespace EmployeeManagement_Blazor.Client.Services
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<Employee>> GetAllEmployees()
+        {
+
+            return httpClient.GetFromJsonAsync<IEnumerable<Employee>>("/api/employees/all");
+        }
+
         public Task<Employee> GetEmployee(int employeeId)
         {
             throw new NotImplementedException();

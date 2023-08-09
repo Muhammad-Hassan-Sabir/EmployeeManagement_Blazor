@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement_Blazor.Server", "EmployeeManagement_Blazor\Server\EmployeeManagement_Blazor.Server.csproj", "{0A0D78FB-5E4D-4A70-AE4D-FB9056CFD9B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement_Blazor.Server", "EmployeeManagement_Blazor\Server\EmployeeManagement_Blazor.Server.csproj", "{0A0D78FB-5E4D-4A70-AE4D-FB9056CFD9B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement_Blazor.Client", "EmployeeManagement_Blazor\Client\EmployeeManagement_Blazor.Client.csproj", "{EF1B3BF9-2973-4A34-87B7-A5BDF5912D0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement_Blazor.Client", "EmployeeManagement_Blazor\Client\EmployeeManagement_Blazor.Client.csproj", "{EF1B3BF9-2973-4A34-87B7-A5BDF5912D0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement_Blazor.Shared", "EmployeeManagement_Blazor\Shared\EmployeeManagement_Blazor.Shared.csproj", "{85230971-8192-47E8-8A05-E057E42930F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement_Blazor.Shared", "EmployeeManagement_Blazor\Shared\EmployeeManagement_Blazor.Shared.csproj", "{85230971-8192-47E8-8A05-E057E42930F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

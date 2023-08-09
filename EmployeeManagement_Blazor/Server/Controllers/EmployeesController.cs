@@ -39,6 +39,20 @@ namespace EmployeeManagement_Blazor.Server.Controllers
                 "Error retrieving data from the database");
             }
         }
+        [HttpGet("All")]
+        public async Task<ActionResult> GetAllEmployees()
+        {
+            try
+            {
+                return Ok(await employee.GetAllEmployees());
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                "Error retrieving data from the database");
+            }
+        }
         [HttpGet]
         public async Task<ActionResult> GetEmployees(int skip=0,int take=5,string? orderBy=nameof(Employee.EmployeeId))
         {

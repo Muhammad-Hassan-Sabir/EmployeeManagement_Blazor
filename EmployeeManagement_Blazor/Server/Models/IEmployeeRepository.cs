@@ -6,6 +6,7 @@ namespace EmployeeManagement_Blazor.Server.Models
     {
         Task<IEnumerable<Employee>> Search(string name, Gender? gender);
         Task<EmployeeDataResult> GetEmployees(int skip ,int take,string orderBy);
+        Task<IEnumerable<Employee>> GetAllEmployees();
         Task<Employee> GetEmployee(int employeeId);
         Task<Employee> GetEmployeeByEmail(string email);
         Task<Employee> AddEmployee(Employee employee);

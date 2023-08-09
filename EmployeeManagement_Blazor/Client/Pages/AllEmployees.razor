@@ -1,0 +1,56 @@
+﻿@page "/all"
+@using EmployeeManagement_Blazor.Shared
+
+@if (Employees == null)
+{
+       <SfSpinner Visible="true" Size="50" Label="Loading Data..." Type="@SpinnerType.Bootstrap4"></SfSpinner>
+}
+else
+{
+        <h3>All Employees</h3>
+        <SfGrid DataSource="@Employees" AllowGrouping="true" AllowPaging="true" AllowFiltering="true">
+            <GridPageSettings PageSizes="true" PageCount="3"></GridPageSettings>
+            <GridFilterSettings Mode="@FilterBarMode.Immediate" ImmediateModeDelay="200" >
+                <GridFilterColumns>
+                    <GridFilterColumn Field="EmployeeId" Value="10" Operator="Operator.Equal">
+                    </GridFilterColumn>
+                </GridFilterColumns>
+            </GridFilterSettings>
+            
+            <GridGroupSettings ShowGroupedColumn="true" ShowUngroupButton="false" ShowToggleButton="true">
+                <CaptionTemplate>
+                @{
+                    var emp = (context as CaptionTemplateContext);
+                    <div>@emp.Field :@emp.Key - @emp.Count  Employees</div>
+
+                }
+                </CaptionTemplate>
+
+            </GridGroupSettings>
+            
+            <GridColumns>
+                <GridColumn Field=@nameof(Employee.EmployeeId) HeaderText="ID"
+                FilterSettings="@(new FilterSettings(){Operator=Operator.LessThanOrEqual})"></GridColumn>
+                <GridColumn Field=@nameof(Employee.FirstName) HeaderText="First Name"></GridColumn>
+                <GridColumn Field=@nameof(Employee.LastName) HeaderText=" Last Name"></GridColumn>
+                <GridColumn Field=@nameof(Employee.Gender) HeaderText="Gender"></GridColumn>
+            </GridColumns>
+        </SfGrid>
+}
+
+
+@code {
+
+    public List<Employee> Employees { get; set; }
+
+    [Inject]
+    public IEmployeeService EmployeeService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Employees = (await EmployeeService.GetAllEmployees()).ToList();
+
+    }
+
+
+}
